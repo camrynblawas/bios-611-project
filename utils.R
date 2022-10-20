@@ -20,8 +20,7 @@ formatdata <- function(df) {
 }
 
 getdate <- function(df) {
-  df$datetime <- as.POSIXct(df$datetime, format = "%Y-%m-%d %H:%M:%S")
-  df$date <-  as.Date(as.character(as.POSIXct(df$datetime, format = "%Y-%m-%d")))
+  df$date <- as.Date(as.character(as.POSIXct(df$date, format = "%Y-%m-%d")))
   return(df)
 }
 
