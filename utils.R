@@ -13,7 +13,9 @@ getdata <- function(id, years) {
 }
 
 formatdata <- function(df) {
-  df <- df %>% mutate(datetime = as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%SZ"), date = as.POSIXct(time, format = "%Y-%m-%d")) %>% select(datetime, date, lat, lon, wind_dir, wind_spd, gust, air_pressure, air_temperature, sea_surface_temperature)
+  df <- df %>% mutate(datetime = as.POSIXct(time, format = "%Y-%m-%dT%H:%M:%SZ"), date = as.POSIXct(time, format = "%Y-%m-%d")) %>% select(datetime, date, lat, lon, wind_dir, wind_spd, gust, air_pressure, air_temperature, sea_surface_temperature) %>% drop_na() %>%
+    group_by(date) %>%
+    summarize(date = mean(date), lat = mean(lat), lon = mean(lon), av_wind_dir = mean(wind_dir), av_wind_spd = mean(wind_spd), av_gust = mean(gust), av_air_pressure = mean(air_pressure), av_air_temp = mean(air_temperature), av_ss_temp = mean(sea_surface_temperature))
   return(df)
 }
 
