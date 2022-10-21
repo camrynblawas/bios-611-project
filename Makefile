@@ -19,3 +19,24 @@ deriveddata/chprocessed.csv: .created-dirs formatdata.R sourcedata/chraw.csv
 	
 deriveddata/duckprocessed.csv: .created-dirs formatdata.R sourcedata/duckraw.csv
 	Rscript formatdata.R
+
+figures/beaufsstpoint.png:
+figures/beaufsstglm.png: .created-dirs\
+preliminaryplots.R\
+deriveddata/beaufprocessed.csv
+	Rscript preliminaryplots.R
+
+figures/chsstpoint.png:
+figures/chsstglm.png: .created-dirs\
+preliminaryplots.R\
+deriveddata/beaufprocessed.csv
+	Rscript preliminaryplots.R
+
+figures/ducksstpoint.png:
+figures/ducksstglm.png: .created-dirs\
+preliminaryplots.R\
+deriveddata/beaufprocessed.csv
+	Rscript preliminaryplots.R
+
+writeup.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
+	pdflatex writeup.tex
