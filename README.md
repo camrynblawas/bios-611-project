@@ -10,6 +10,26 @@ Measurements are taken every 6 minutes, and the dataset spans from 2016 to prese
 
 To run: 
 
+Build the container and run:
+```
+docker build . -t 611
+```
+
+```
+docker run -v $(pwd):/home/rstudio/work\
+           -p 8787:8787\
+           -e PASSWORD=hello\
+           -it 611
+```
+
+Go to http://localhost:8787 on your browser
+
+To read the report 
+```
 setwd("~/work")
+make writeup.pdf
+```
+
+
 
 ----------------------------
