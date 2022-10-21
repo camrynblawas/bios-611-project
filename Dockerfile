@@ -1,3 +1,3 @@
 FROM rocker/verse
-RUN Rscript --no-restore --no-save -e "install.packages('ncdf4')"
-RUN Rscript --no-restore --no-save -e "install.packages('rnoaa')"
+RUN R -e "install.packages('ncdf4',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('rnoaa',dependencies=TRUE, repos='http://cran.rstudio.com/')"

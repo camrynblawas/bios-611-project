@@ -16,11 +16,11 @@ for (i in 1:length(processedfiles)) {
 
 
 for (i in 1:length(data)) {
-  ggplot() + geom_point(data = data[[i]], mapping = aes(x = date, y = sea_surface_temperature)) + ggtitle(paste0(prettynames[i], " Sea Surface Temperature"))
+  ggplot() + geom_point(data = data[[i]], mapping = aes(x = date, y = av_ss_temp)) + ggtitle(paste0(prettynames[i], " Sea Surface Temperature"))
   ggsave(paste0("./figures/", names[i], "sstpoint.png"))
 }
 
 for (i in 1:length(data)) {
-  ggplot(data = data[[i]], mapping = aes(x = date, y = sea_surface_temperature)) + geom_point(size=0.5) + stat_smooth(method = "lm", col = "blue") + ggtitle(paste0(prettynames[i], " Sea Surface Temperature Linear Model")) + xlab("Date") + ylab("Sea Surface Temperature") + mytheme()
+  ggplot(data = data[[i]], mapping = aes(x = date, y = av_ss_temp)) + geom_point(size=0.5) + stat_smooth(method = "lm", col = "blue") + ggtitle(paste0(prettynames[i], " Sea Surface Temperature Linear Model")) + xlab("Date") + ylab("Sea Surface Temperature") + mytheme()
   ggsave(paste0("./figures/", names[i], "sstglm.png"), width = 8, height = 6, units = "in")
 }
