@@ -37,6 +37,9 @@ figures/ducksstglm.png: .created-dirs\
 preliminaryplots.R\
 deriveddata/beaufprocessed.csv
 	Rscript preliminaryplots.R
+	
+report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
+	R -e "rmarkdown::render(\"writeup.Rmd\", output_format=\"pdf_document\")"
 
 writeup.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	pdflatex writeup.tex

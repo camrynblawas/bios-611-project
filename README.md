@@ -22,11 +22,12 @@ docker run -v $(pwd):/home/rstudio/work\
            -it 611
 ```
 
-Go to http://localhost:8787 on your browser
+Go to http://localhost:8787 on your browser and log in
 
 To read the report 
 ```
 setwd("~/work")
+make report.pdf
 make writeup.pdf
 ```
 
