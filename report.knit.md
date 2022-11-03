@@ -6,10 +6,7 @@ output:
 date: "2022-10-28"
 ---
 
-```{r, echo = FALSE}
-library(rmarkdown)
-library(tinytex)
-```
+
 
 ##Introduction
 

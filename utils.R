@@ -1,6 +1,7 @@
 library(tidyverse)
-library(rnoaa)
-library(ncdf4)
+library(gridExtra)
+# library(rnoaa)
+# library(ncdf4)
 
 getdata <- function(id, years) {
   i <- years[1]
@@ -22,6 +23,12 @@ formatdata <- function(df) {
 
 getdate <- function(df) {
   df$date <- as.Date(as.character(as.POSIXct(df$date, format = "%Y-%m-%d")))
+  df$year <- as.numeric(format(df$date, format = "%Y"))
+  df$month <- as.numeric(format(df$date, format = "%m"))
+  df$day <- as.numeric(format(df$date, format = "%d"))
+  df$doy <- as.POSIXlt(df$date, format = "%Y-%m-%d")
+  df$doy <- strftime(df$doy, format = "%j")
+  df$doy <- as.numeric(df$doy)
   return(df)
 }
 
