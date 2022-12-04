@@ -73,6 +73,11 @@ pca.R\
 deriveddata/duckprocessed.csv
 	Rscript pca.R
 
+figures/sitemap.png: .created-dirs\
+map.R\
+deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
+	Rscript map.R
+
 report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
 
