@@ -92,6 +92,22 @@ figures/duckapriltrends.png: .created-dirs\
 wcr.R\
 deriveddata/duckprocessed.csv
 	Rscript wcr.R
+	
+figures/beaufseasonaltrend.png: .created-dirs\
+timeseries.R\
+deriveddata/beaufprocessed.csv
+	Rscript timeseries.R
+
+figures/chseasonaltrend.png: .created-dirs\
+timeseries.R\
+deriveddata/chprocessed.csv
+	Rscript timeseries.R
+	
+figures/duckseasonaltrend.png: .created-dirs\
+timeseries.R\
+deriveddata/duckprocessed.csv
+	Rscript timeseries.R
+
 report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
 

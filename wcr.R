@@ -47,6 +47,7 @@ alldata %>%
   filter(month == 4) %>%
   filter(day %in% (15:30)) %>%
   ggplot(mapping = aes(x = day, y = av_ss_temp, color=factor(year))) +
+  geom_point(alpha=0.2)+
   geom_smooth(size=0.25) + ylim(5,30) +
   facet_grid( ~ id, scales = "free") +
   labs(title = "Late April 2017 Temperature Trends", y = "Temperature (\u00B0C)", x = "Day")

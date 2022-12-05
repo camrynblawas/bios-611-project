@@ -22,11 +22,13 @@ for (i in 1:length(data)) {
   df <- df[,-1]
   df <- df[,-1]
   df <- df[,-9]
-  df <- df[,-8]
+  df <- df[,-9]
+  df <- df[,-9]
   result[[i]] <- prcomp(df)
   names(result)[i] <- names[i]
   results <- result[[i]]
   summary(results)
+  biplot(results)
   ggplot(results$x %>% as_tibble() %>% select(PC1, PC2), aes(PC1, PC2)) + geom_point() + ggtitle(paste0(prettynames[i], " PCA"))
   ggsave(paste0("./figures/", names[i], "pca.png"))
   # table(summary(result[[i]]))
