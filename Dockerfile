@@ -13,4 +13,5 @@ RUN R -e "install.packages('tseries',dependencies=TRUE, repos='http://cran.rstud
 RUN R -e "install.packages('lubridate',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('trend',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('ggpmisc',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('factoextra',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN Rscript --no-restore --no-save -e "update.packages(ask = FALSE);"

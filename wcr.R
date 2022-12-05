@@ -43,7 +43,6 @@ wcrdays <- alldata %>%
 wilcoxtest <- compare_means(av_ss_temp ~ bin, comparisons = my_comp, method='wilcox.test', data = wcrdays)
 wilcoxtest <- wilcoxtest %>% mutate(y.position = c(22.5, 24, 25.5, 27, 28.5, 30))
 ggplot(data = wcrdays, mapping = aes(x = bin, y = av_ss_temp, group = factor(bin))) + geom_boxplot(fill = "darkcyan") + ylim(10,30) + labs(title = "Possibly WCR Weeks Compared", y = "Temperature (\u00B0C)", x = "Day Bins") + scale_x_discrete() + theme(legend.position = "none") + stat_pvalue_manual(wilcoxtest, label = "p = {p.adj}", size = 3)
-facet_grid( ~ id, scales = "free")
 ggsave("./figures/warmcoreringdayscompared.png", width = 6, height = 4, units = "in")
 
 alldata %>%

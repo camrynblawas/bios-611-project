@@ -113,6 +113,16 @@ wcr.R\
 deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
 	Rscript wcr.R
 
+alldatapca.png: .created-dirs\
+pca.R\
+deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
+	Rscript pca.R
+	
+clustering.jpg: .created-dirs\
+pca.R\
+deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
+	Rscript pca.R
+
 report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
 
