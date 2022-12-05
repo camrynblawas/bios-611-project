@@ -1,6 +1,6 @@
 library(tidyverse)
 library(ggmap)
-library(osmdata)
+# library(osmdata)
 source("utils.R")
 
 prettynames <- c("Beaufort", "Cape Hatteras", "Duck")

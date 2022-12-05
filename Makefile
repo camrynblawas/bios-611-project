@@ -78,6 +78,20 @@ map.R\
 deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
 	Rscript map.R
 
+figures/beaufapriltrends.png: .created-dirs\
+wcr.R\
+deriveddata/beaufprocessed.csv
+	Rscript wcr.R
+
+figures/chapriltrends.png: .created-dirs\
+wcr.R\
+deriveddata/chprocessed.csv
+	Rscript wcr.R
+
+figures/duckapriltrends.png: .created-dirs\
+wcr.R\
+deriveddata/duckprocessed.csv
+	Rscript wcr.R
 report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
 
