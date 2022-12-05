@@ -22,10 +22,10 @@ alldata <- bind_rows(data, .id = 'id')
 
 alldata %>%
   filter(year == 2017) %>%
-  filter(month %in% c(3, 4, 5)) %>%
-  ggplot(mapping = aes(x = day, y = av_ss_temp)) +
+  filter(doy %in% (110:130)) %>%
+  ggplot(mapping = aes(x = doy, y = av_ss_temp)) +
   geom_point()+ geom_smooth() + ylim(5,30) +
-  facet_grid( ~ id + month, scales = "free") +
+  facet_grid( ~ id, scales = "free") +
   labs(title = "2017 March, April, and May Temperature Trends", y = "Temperature (\u00B0C)", x = "Day")
 
 alldata %>%
@@ -35,13 +35,16 @@ alldata %>%
   facet_grid( ~ id, scales = "free") +
   labs(title = "April Temperature Trends", y = "Temperature (\u00B0C)", x = "Day")
 
-alldata %>%
+my_comp <- list(c("[126,133]","[119,126]"), c("[126,133]", "[112,119]"), c("[126,133]", "[105,112]"), c("[119,126]", "[112,119]"), c("[119,126]", "[105,112]"), c("[112,119]", "[105,112]"))
+wcrdays <- alldata %>%
+  mutate(bin = cut_width(doy, width=7, boundary=0)) %>%
   filter(year == 2017) %>%
-  filter(month == 4) %>%
-  ggplot(mapping = aes(x = day, y = av_ss_temp)) +
-  geom_point()+ geom_smooth() + ylim(5,30) +
-  facet_grid( ~ id, scales = "free") +
-  labs(title = "April 2017 Temperature Trends", y = "Temperature (\u00B0C)", x = "Day")
+  filter(doy %in% (110:130))
+wilcoxtest <- compare_means(av_ss_temp ~ bin, comparisons = my_comp, method='wilcox.test', data = wcrdays)
+wilcoxtest <- wilcoxtest %>% mutate(y.position = c(22.5, 24, 25.5, 27, 28.5, 30))
+ggplot(data = wcrdays, mapping = aes(x = bin, y = av_ss_temp, group = factor(bin))) + geom_boxplot(fill = "darkcyan") + ylim(10,30) + labs(title = "Possibly WCR Weeks Compared", y = "Temperature (\u00B0C)", x = "Day Bins") + scale_x_discrete() + theme(legend.position = "none") + stat_pvalue_manual(wilcoxtest, label = "p = {p.adj}", size = 3)
+facet_grid( ~ id, scales = "free")
+ggsave("./figures/warmcoreringdayscompared.png", width = 6, height = 4, units = "in")
 
 alldata %>%
   filter(month == 4) %>%

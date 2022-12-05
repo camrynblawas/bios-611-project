@@ -12,5 +12,5 @@ RUN R -e "install.packages('ggpubr',dependencies=TRUE, repos='http://cran.rstudi
 RUN R -e "install.packages('tseries',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('lubridate',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('trend',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-
+RUN R -e "install.packages('ggpmisc',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN Rscript --no-restore --no-save -e "update.packages(ask = FALSE);"

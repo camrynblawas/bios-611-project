@@ -17,6 +17,7 @@ for (i in 1:length(processedfiles)) {
 }
 
 result <- list()
+kmeans <- list()
 for (i in 1:length(data)) {
   df <- data[[i]]
   df <- df[,-1]
@@ -27,10 +28,16 @@ for (i in 1:length(data)) {
   result[[i]] <- prcomp(df)
   names(result)[i] <- names[i]
   results <- result[[i]]
-  summary(results)
-  biplot(results)
+  result$rotation
+  # biplot(results)
   ggplot(results$x %>% as_tibble() %>% select(PC1, PC2), aes(PC1, PC2)) + geom_point() + ggtitle(paste0(prettynames[i], " PCA"))
-  ggsave(paste0("./figures/", names[i], "pca.png"))
+  # ggsave(paste0("./figures/", names[i], "pca.png"))
+  kmeans_data = kmeans(df, center = 3)
+  kmeansTab = table(kmeans_data$cluster, df$year)
+  kmeans[[i]] <- kmeansTab
+  names(kmeans)[i] <- kmeans[i]
   # table(summary(result[[i]]))
 }
+
+
 

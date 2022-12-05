@@ -108,6 +108,11 @@ timeseries.R\
 deriveddata/duckprocessed.csv
 	Rscript timeseries.R
 
+warmcoreringdayscompared.png: .created-dirs\
+wcr.R\
+deriveddata/duckprocessed.csv deriveddata/chprocessed.csv deriveddata/beaufprocessed.csv
+	Rscript wcr.R
+
 report.pdf: figures/beaufsstpoint.png figures/beaufsstglm.png figures/chsstpoint.png figures/chsstpoint.png figures/ducksstpoint.png figures/ducksstglm.png
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
 
